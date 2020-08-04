@@ -7,3 +7,21 @@ startup failed:
    class Contract implements ApprovalTarget<ContractDraft>{
 
 ```
+
+#Groovy code
+
+```
+for (int i = 0; i < nTypes.length; i++) {
+            ClassNode nType = nTypes[i].getType();
+            ClassNode cnType = cnTypes[i].getType();
+            // check nested type parameters
+            checkGenericsUsage(nType, nType.redirect());
+            // check bounds
+            if (!nType.isDerivedFrom(cnType)) {
+                if (cnType.isInterface() && nType.implementsInterface(cnType)) continue;
+                addError("The type " + nTypes[i].getName() +
+                        " is not a valid substitute for the bounded parameter <" +
+                        getPrintName(cnTypes[i]) + ">", n);
+            }
+        }
+```
