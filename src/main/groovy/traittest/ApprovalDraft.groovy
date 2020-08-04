@@ -1,6 +1,6 @@
 package traittest
 
-trait ApprovalDraft extends ApprovalTarget {
+trait ApprovalDraft {
     String status
 
 }
